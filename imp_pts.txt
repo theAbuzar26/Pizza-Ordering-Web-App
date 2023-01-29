@@ -1,0 +1,6 @@
+
+lecture-2
+1. yarn is faster than npm
+2.ls -shows items in folder
+3. use add instead of install in yarn
+4. all dependencies are in .yarn folder which is like node-modules
