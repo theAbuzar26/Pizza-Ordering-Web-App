@@ -1,17 +1,30 @@
 const express=require('express');
-// app contains main express objects
+//importing express 
 const app=express();
+// app is main express object
 
-//assigning port
-const PORT=process.env.PORT || 3000;
-// if(process.env.PORT){
-//     PORT=process.env.PORT;
-// }else{
-//     PORT=3000;
-// }
+// importing ejs-templateEngine
+const ejs=require('ejs');
 
-app.listen(PORT,()=>{
-    console.log("Listening on Port");
+//importing layouts
+const Expresslayouts=require('express-ejs-layouts');
+
+//importing path module
+const Path=require('path');
+
+const Port=process.env.Port || 3300;
+
+// solving local host issue
+app.get('/',(req,res)=>{
+    res.render('home');
+}) 
+
+//Set Template Engine
+app.use(Expresslayouts)
+app.set('views',Path.join(__dirname,'/resources/views'))
+app.set('view engine','ejs')
+
+app.listen(Port,()=>{
+    console.log(`Listening on Port  ${Port}`);
 })
 
-// after this server is created

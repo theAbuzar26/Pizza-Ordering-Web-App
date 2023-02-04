@@ -1,6 +1,15 @@
 {
   "name": "pizza-website",
-  "packageManager": "yarn@3.3.1",
+  "version": "1.0.0",
+  "description": "This is real-time Pizza delivery app",
+  "main": "index.js",
+  "scripts": {
+    
+    "serve":"node server.js",
+    "dev":" nodemon server.js"
+  },
+  "author": "Abuzar Eqbal",
+  "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.8",
     "express": "^4.18.2",

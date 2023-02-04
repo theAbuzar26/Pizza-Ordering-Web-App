@@ -1,6 +1,12 @@
 
-lecture-2
+lecture-2-creating express server
+
+imp key pts
 1. yarn is faster than npm
 2.ls -shows items in folder
 3. use add instead of install in yarn
 4. all dependencies are in .yarn folder which is like node-modules
+5. ctrl+c -> to stop a process
+6. npm run "script name"-> to run a process through npm
+
+
