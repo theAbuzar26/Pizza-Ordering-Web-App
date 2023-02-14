@@ -1,4 +1,6 @@
 
+
+&&&&&&& important--npm run dev---(to start a server)
 lecture-2-creating express server
 
 imp key pts
@@ -8,5 +10,14 @@ imp key pts
 4. all dependencies are in .yarn folder which is like node-modules
 5. ctrl+c -> to stop a process
 6. npm run "script name"-> to run a process through npm
+
+lecture-3
+1.laravel mix install version latest 6.0 and script of version 5
+1.1
+ //"watch": "npm mix", compile method of laravel mix 6.0
+2.configure it (followed youtube commented algo by one of viewer)
+2.1-> the work of laravel mix to compile js of resources to public js automatically
+3.install tailwind css version 1.9 instead of latest
+4. in my pc dev and watch run independently ..not one after another
 
 

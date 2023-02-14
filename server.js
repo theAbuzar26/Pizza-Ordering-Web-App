@@ -14,10 +14,15 @@ const Path=require('path');
 
 const Port=process.env.Port || 3300;
 
+
+
 // solving local host issue
 app.get('/',(req,res)=>{
     res.render('home');
 }) 
+
+//assets
+app.use(express.static('public'));
 
 //Set Template Engine
 app.use(Expresslayouts)
