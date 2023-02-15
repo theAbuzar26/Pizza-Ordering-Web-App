@@ -16,18 +16,40 @@ const Port=process.env.Port || 3300;
 
 
 
-// solving local host issue
-app.get('/',(req,res)=>{
-    res.render('home');
-}) 
+
 
 //assets
 app.use(express.static('public'));
+
+
+
 
 //Set Template Engine
 app.use(Expresslayouts)
 app.set('views',Path.join(__dirname,'/resources/views'))
 app.set('view engine','ejs')
+
+// solving local host issue
+app.get('/',(req,res)=>{
+    res.render('home');
+}) 
+
+//route for cart
+app.get('/cart',(req,res)=>{
+    res.render('customer/cart');
+})
+
+//route for login
+app.get('/login',(req,res)=>{
+    res.render('authorization/login');
+})
+
+//route for register
+app.get('/register',(req,res)=>{
+    res.render('authorization/register');
+})
+
+
 
 app.listen(Port,()=>{
     console.log(`Listening on Port  ${Port}`);

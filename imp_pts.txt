@@ -20,4 +20,8 @@ lecture-3
 3.install tailwind css version 1.9 instead of latest
 4. in my pc dev and watch run independently ..not one after another
 
+lecture-4
+1. layout.ejs contains code for repeating stuffs like footer,navbar 
+Expresslayouts uses this layout.ejs
+
 
