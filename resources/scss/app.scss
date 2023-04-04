@@ -15,7 +15,8 @@ body {
 
 
 nav li:last-child a {
-    background: $primary; 
+    // background: red; 
+    background: $secondary;
     &:hover {
         background-color: $primary-hover;
     }   

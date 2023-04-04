@@ -25,3 +25,11 @@ lecture-4
 Expresslayouts uses this layout.ejs
 
 
+
+lecture.5
+creating login,register,cart layouts not functionality
+
+lecture-6
+
+
+
