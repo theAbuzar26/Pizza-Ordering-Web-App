@@ -1,3 +1,7 @@
+//importing .env module
+const dotenv = require("dotenv");
+dotenv.config();
+
 const express=require('express');
 //importing express 
 const app=express();
@@ -12,19 +16,44 @@ const Expresslayouts=require('express-ejs-layouts');
 //importing path module
 const Path=require('path');
 
-const Port=process.env.Port || 3300;
+
+
+const Port = process.env.PORT || 3300;
 
 //importing mongoose
 const mongoose = require('mongoose');
 
+//importing session
+const session = require('express-session')
+
+//importing flash for cookie work
+const flash = require('express-flash')
+
+//importing connect-mongo module to store session id in db
+const MongoDbStore = require('connect-mongo')
+
+//DataBase connection
+const connectDb = require("./Config/dbConnection");
+connectDb();
 
 
 
+// Session config
+app.use(session({
+    secret: process.env.COOKIE_SECRET,
+    resave: false,
+    store: MongoDbStore.create({ mongoUrl: process.env.CONNECTION_STRING }),
+    saveUninitialized: false,
+    cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hour
+    //cookie: { maxAge: 1000 * 15  } // last 15 sec for each refresh
+}))
 
-
+app.use(flash())
 
 //assets
 app.use(express.static('public'));
+
+app.use(express.json())
 
 // DataBase Connection  // process.env.MONGO_CONNECTION_URL->for atlas
 
@@ -38,19 +67,45 @@ app.use(express.static('public'));
 // }
 // connection('mongodb+srv://abuzar:123@cluster0.walhm7e.mongodb.net/?retryWrites=true&w=majority');
 
+// Database connection
+// mongoose.connect(process.env.MONGO_CONNECTION_URL, { useNewUrlParser: true, useCreateIndex:true, useUnifiedTopology: true, useFindAndModify : true });
+// const connection = mongoose.connection;
+// connection.once('open', () => {
+//     console.log('Database connected...');
+// }).catch(err => {
+//     console.log('Connection failed...')
+// });
 
 
-mongoose.connect('mongodb://127.0.0.1:27017/pizza', 
-    { useNewUrlParser: true, useCreateIndex:true, useUnifiedTopology: true, useFindAndModify : true });
-const connection = mongoose.connection;
-connection.once('open', () => {
-    console.log('Database connected...');
-}).catch( err => {
-    console.log('Connection failed...')
-}); 
 
 
 
+ 
+
+//satckoverflow code
+// mongoose.connect(
+//     'mongodb://myUserAdmin:Mongo123@localhost:27017/pizza',
+//     {
+//       useNewUrlParser: true,
+//       useUnifiedTopology: true,
+//     },
+//     (err) => {
+//       if (err) {
+//         console.error('FAILED TO CONNECT TO MONGODB');
+//         console.error(err);
+//       } else {
+//         console.log('CONNECTED TO MONGODB');
+//         app.listen(3300);
+//       }
+//     }
+//   );
+
+// Global middleware
+app.use((req, res, next) => {
+    res.locals.session = req.session
+    res.locals.user = req.user
+    next()
+})
 
 // Set Template Engine
 app.use(Expresslayouts)
