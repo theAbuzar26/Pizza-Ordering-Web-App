@@ -4,9 +4,6 @@ const passport = require('passport')
 
 function authController() {
 
-    const _getRedirectUrl = (req) => {
-        return req.user.role === 'admin' ? '/admin/orders' : '/customer/orders'
-    }
     return {
         login(req, res) {
             res.render('authorization/login')
@@ -33,8 +30,8 @@ function authController() {
                         return next(err)
                     }
 
-                    return res.redirect(_getRedirectUrl(req))
-                    // res.redirect('/')
+                    //return res.redirect(_getRedirectUrl(req))
+                    return res.redirect('/')
                 })
             })(req, res, next)
         },
