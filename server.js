@@ -32,9 +32,6 @@ const flash = require('express-flash')
 //importing connect-mongo module to store session id in db
 const MongoDbStore = require('connect-mongo')
 
-//impoeting passport library
-const passport = require('passport')
-
 //DataBase connection
 const connectDb = require("./Config/dbConnection");
 connectDb();
@@ -51,19 +48,11 @@ app.use(session({
     //cookie: { maxAge: 1000 * 15  } // last 15 sec for each refresh
 }))
 
-
-//configuration of passport.js
-const passportInit = require('./app/config/passport')
-passportInit(passport)
-app.use(passport.initialize())
-app.use(passport.session())
-
-
 app.use(flash())
 
 //assets
 app.use(express.static('public'));
-app.use(express.urlencoded({ extended: false }))
+
 app.use(express.json())
 
 // DataBase Connection  // process.env.MONGO_CONNECTION_URL->for atlas
